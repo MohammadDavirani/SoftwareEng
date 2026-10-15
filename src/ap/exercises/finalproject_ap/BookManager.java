@@ -126,11 +126,21 @@ public class BookManager implements Serializable {
 
     public int bookSignedByEmployeeCount(String employeeId) {
         return (int) books.stream()
-                .filter(b -> b.getBookRegisterer().getUserId().equals(employeeId))
+                .filter(b -> b.getBookRegisterer() != null && b.getBookRegisterer().getUserId().equals(employeeId))
                 .count();
     }
 
     public int getBookCount() {
         return books.size();
+    }
+
+    // ----- Database layer access (package-private) -----
+
+    void restore(List<Book> savedBooks) {
+        this.books = new ArrayList<>(savedBooks);
+    }
+
+    List<Book> getBooks() {
+        return books;
     }
 }

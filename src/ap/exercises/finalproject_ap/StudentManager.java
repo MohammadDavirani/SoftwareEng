@@ -123,6 +123,22 @@ public class StudentManager implements Serializable {
         return students.size();
     }
 
+    // ----- Database layer access (package-private) -----
+
+    void restore(List<Student> savedStudents, List<Student> savedBlackList) {
+        this.students = new ArrayList<>(savedStudents);
+        this.blackList.clear();
+        this.blackList.addAll(savedBlackList);
+    }
+
+    List<Student> getStudents() {
+        return students;
+    }
+
+    List<Student> getBlackList() {
+        return blackList;
+    }
+
     public void displayStudentStatistics(LoanBookManager loanBookManager) {
         if (students.size() == 0) {
             System.out.println("There's not a student in list.");

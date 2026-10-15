@@ -645,7 +645,7 @@ public class MenuHandler implements Serializable {
                 if (input >= min && input <= max) {
                     return input;
                 }
-                System.out.printf("Please enter a number between %d and %d: ", min, max);
+                System.out.println("Please enter a number between " + min + " and " + max + ": ");
             } catch (NumberFormatException e) {
                 System.out.print("Invalid input. Please enter a number: ");
             } catch (NoSuchElementException e) {

@@ -56,6 +56,16 @@ public class LoanBookManager implements Serializable {
         return loans.size();
     }
 
+    // ----- Database layer access (package-private) -----
+
+    void restore(List<LoanBook> savedLoans) {
+        this.loans = new ArrayList<>(savedLoans);
+    }
+
+    List<LoanBook> getLoans() {
+        return loans;
+    }
+
     public void returnBook(String bookId, Employee currentEmployee) {
         LoanBook loanBook = loans.stream()
                 .filter(l -> l.getBook().getBookId().equals(bookId))

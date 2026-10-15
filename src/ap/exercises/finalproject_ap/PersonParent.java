@@ -14,10 +14,16 @@ public class PersonParent implements Serializable {
     private String password;
 
     public PersonParent(String name, String userId, String username, String password) {
+        this(name, userId, username, password, false);
+    }
+
+    // Restores a person saved in the database, whose password is already hashed
+    // and therefore must not be hashed a second time.
+    protected PersonParent(String name, String userId, String username, String password, boolean passwordIsHashed) {
         this.name = name;
         this.userId = userId;
         this.username = username;
-        this.password = hashPassword(password);
+        this.password = passwordIsHashed ? password : hashPassword(password);
     }
 
     public String getName() {
@@ -42,6 +48,11 @@ public class PersonParent implements Serializable {
 
     public boolean checkPassword(String rawPassword) {
         return this.password != null && this.password.equals(hashPassword(rawPassword));
+    }
+
+    // Database layer only: the stored (already hashed) password.
+    String getPasswordHash() {
+        return password;
     }
 
     private static String hashPassword(String rawPassword) {

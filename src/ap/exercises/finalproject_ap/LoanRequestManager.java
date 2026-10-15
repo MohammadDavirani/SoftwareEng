@@ -59,4 +59,14 @@ public class LoanRequestManager implements Serializable {
         renewList();
         return requests.size();
     }
+
+    // ----- Database layer access (package-private) -----
+
+    void restore(List<LoanRequest> savedRequests) {
+        this.requests = new ArrayList<>(savedRequests);
+    }
+
+    List<LoanRequest> getRequests() {
+        return requests;
+    }
 }

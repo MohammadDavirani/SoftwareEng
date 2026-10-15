@@ -25,6 +25,18 @@ public class LoanBook implements Serializable, Loanable {
         this.endDate = loanRequest.getEndDate();
     }
 
+    // Restores a loan saved in the database with its full state.
+    LoanBook(Student student, Book book, Employee giverEmployee, Employee getterEmployee,
+             LocalDate startDate, LocalDate endDate, LocalDate returnDate) {
+        this.student = student;
+        this.book = book;
+        this.giverEmployee = giverEmployee;
+        this.getterEmployee = getterEmployee;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.returnDate = returnDate;
+    }
+
     public void setGetterEmployee(Employee getterEmployee) {
         this.getterEmployee = getterEmployee;
     }
@@ -47,6 +59,18 @@ public class LoanBook implements Serializable, Loanable {
 
     public Book getBook() {
         return book;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
     }
 
     @Override

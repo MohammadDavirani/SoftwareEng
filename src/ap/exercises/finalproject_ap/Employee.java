@@ -8,6 +8,11 @@ public class Employee extends PersonParent {
         super(name, userId, username, password);
     }
 
+    // Restores an employee saved in the database (password is already hashed).
+    Employee(String name, String userId, String username, String passwordHash, boolean restored) {
+        super(name, userId, username, passwordHash, restored);
+    }
+
     @Override
     public String toString() {
         return "Employee Name: " + super.getName() +

@@ -59,4 +59,15 @@ public class EmployeeManager implements Serializable {
     public int getEmployeesCount() {
         return employees.size();
     }
+
+    // ----- Database layer access (package-private) -----
+
+    void restore(List<Employee> savedEmployees) {
+        this.employees.clear();
+        this.employees.addAll(savedEmployees);
+    }
+
+    List<Employee> getEmployees() {
+        return employees;
+    }
 }

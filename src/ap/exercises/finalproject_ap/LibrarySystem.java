@@ -30,6 +30,41 @@ public class LibrarySystem implements Serializable {
 
     }
 
+    // Reassembles a system from data loaded out of the database.
+    LibrarySystem(StudentManager studentManager, EmployeeManager employeeManager,
+                  BookManager bookManager, LoanBookManager loanBookManager,
+                  LoanRequestManager loanRequestManager) {
+        this.studentManager = studentManager;
+        this.employeeManager = employeeManager;
+        this.loanBookManager = loanBookManager;
+        this.bookManager = bookManager;
+        this.loanRequestManager = loanRequestManager;
+        this.menuHandler = new MenuHandler(this);
+        this.persistence = new Persistence();
+    }
+
+    // ----- Database layer access (package-private) -----
+
+    StudentManager getStudentManager() {
+        return studentManager;
+    }
+
+    EmployeeManager getEmployeeManager() {
+        return employeeManager;
+    }
+
+    BookManager getBookManager() {
+        return bookManager;
+    }
+
+    LoanBookManager getLoanBookManager() {
+        return loanBookManager;
+    }
+
+    LoanRequestManager getLoanRequestManager() {
+        return loanRequestManager;
+    }
+
     public int getStudentCount() {
         return this.studentManager.getStudentCount();
     }
