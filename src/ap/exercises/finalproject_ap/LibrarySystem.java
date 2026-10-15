@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// LibrarySystem.java
+
 public class LibrarySystem implements Serializable {
 
     private static final long serialVersionUID = 1L;
